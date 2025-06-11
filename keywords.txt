@@ -1,0 +1,42 @@
+#######################################
+# Syntax Coloring Map for the
+# upd7225 LCD library
+# https://github.com/fryktoria/upd7225
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+UPD7225	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+hardReset	KEYWORD2
+startSession	KEYWORD2
+endSession	KEYWORD2
+command	KEYWORD2
+customChar	KEYWORD2
+setSymbol	KEYWORD2
+clearSymbol	KEYWORD2
+blinkSymbol	KEYWORD2
+noBlinkSymbol	KEYWORD2
+clearDisplay	KEYWORD2
+etBlinkSpeed	KEYWORD2
+blinkDisplay	KEYWORD2
+blinkDisplayStop	KEYWORD2
+writeDataMemory	KEYWORD2
+writeChar7	KEYWORD2
+print7	KEYWORD2
+writeCustomChar14	KEYWORD2
+writeChar14	KEYWORD2
+print14	KEYWORD2
+printNumber7	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
