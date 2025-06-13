@@ -407,7 +407,7 @@ void UPD7225::printNumber7(int value, bool withPercent, bool leadingZero, bool p
     writeChar7(0, '0');
     writeChar7(1, '0');
   } else {
-    if (value < 9) {
+    if (value <= 9) {
       leadingZero ? writeChar7(0, '0') : writeChar7(0, ' ');
       writeChar7(1, charArray7[value]);
     } else {
