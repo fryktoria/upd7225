@@ -17,7 +17,7 @@ To open the library manager, in the IDE click on `Sketch` -> `Include Library` -
 Then search for <b>upd7225</b>.
 
 ## About the LCD
-The LCD comes from an old and beyond repair display of an ECLIPSE7 RC transmitter. Under a project to build a PC joystick using the potentiometers and switches of the RC transmitter, the idea came to use the display for the purpose of applying configuration parameters to the joystick. 
+The LCD comes from an old and beyond repair ECLIPSE7 RC transmitter. Under a project to build a PC joystick using the potentiometers and switches of the RC transmitter, the idea came to use the display for the purpose of applying configuration parameters to the joystick. 
 
 <br/> <br/>
 <img src="./images/lcd.jpg" width="450">
