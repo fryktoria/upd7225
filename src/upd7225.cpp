@@ -1,3 +1,11 @@
+/*
+Update 2025-12-17 Added non-blocking behaviour to I2C read and write
+operations, when LCD is controlled by PCF8574 extender.
+Changed setPin() and readPin() functions.
+
+
+*/
+
 #include "Arduino.h"
 #include "upd7225.h"
 
@@ -457,6 +465,12 @@ void UPD7225::wait()
 void UPD7225::setPin(uint8_t pin, uint8_t newState)
 {
   if (_withI2cExtender) {
+    /*
+      Set non-blocking to I2C transmit. In case of timeout, no operation 
+      will be performed until the Wire.clearWireTimeoutFlag() below
+      and therefore no change will be done.
+    */
+    Wire.setWireTimeout(2000); // in microseconds 
     Wire.beginTransmission((int)_I2C_Device_Address);  
     if (newState == LOW) {
       _pcf8574OutputPinState &= ~pin;      
@@ -464,7 +478,8 @@ void UPD7225::setPin(uint8_t pin, uint8_t newState)
       _pcf8574OutputPinState |= pin; 
     } 
     Wire.write(_pcf8574OutputPinState);
-    Wire.endTransmission();  
+    Wire.endTransmission();
+    Wire.clearWireTimeoutFlag();    
   } else {
     digitalWrite(pin, newState);
   }
@@ -474,12 +489,19 @@ void UPD7225::setPin(uint8_t pin, uint8_t newState)
 int UPD7225::readPin(uint8_t pin)
 { 
   if (_withI2cExtender) {
+    /*
+      Set non-blocking to I2C receive. In case of timeout, the code will 
+      not block on requestFrom(), available() will have nothing to return 
+      so readPin() will return HIGH
+    */
+    Wire.setWireTimeout(2000); // in microseconds 
     Wire.requestFrom((int)_I2C_Device_Address, 1);
     if (Wire.available()) {
       return ( !!(Wire.read() & pin));
     } else {
       return HIGH;
     }
+    Wire.clearWireTimeoutFlag();
   } else { 
     return(digitalRead(pin));
   }
